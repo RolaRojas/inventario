@@ -1,0 +1,353 @@
+/* ========== SIDEBAR ========== */
+.sidebar {
+    width: 220px;
+    background-color: #343a40;
+    color: white;
+    position: fixed;
+    height: 100%;
+    transition: width 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 10px;
+    z-index: 999;
+  }
+  
+  /* SIDEBAR COLAPSADO */
+  .sidebar.collapsed {
+    width: 60px;
+  }
+  
+  /* BOTÓN HAMBURGUESA */
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+  }
+  
+  .sidebar.collapsed .toggle-btn {
+    transform: rotate(90deg);
+  }
+  
+  /* ENCABEZADO DE SIDEBAR (marca + botón) */
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative; /* Para posicionamiento absoluto de los hijos */
+  }
+  
+  /* Asegurar que el botón de hamburguesa permanezca visible cuando el sidebar está colapsado */
+  .sidebar.collapsed .sidebar-header {
+    justify-content: center;
+  }
+  
+  /* NOMBRE DE LA APLICACIÓN */
+  .brand {
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  /* Ocultar el nombre cuando el sidebar está colapsado - IMPORTANTE: asegurar que esté completamente oculto */
+  .sidebar.collapsed .brand {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+    clip: rect(0, 0, 0, 0) !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+  
+  /* ========== BOTONES DE MENÚ ========== */
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px 0;
+    transition: background-color 0.3s ease;
+    justify-content: flex-start;
+    position: relative;
+  }
+  
+  .nav-btn i {
+    font-size: 20px;
+  }
+  
+  .nav-btn:hover {
+    background-color: #495057;
+  }
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%; /* Ocupa todo el ancho disponible cuando el sidebar no está colapsado */
+  }
+  
+  .nav-logo {
+    display: none; /* Ocultar el logo por defecto */
+    height: 24px; /* Ajusta el tamaño del logo según necesites */
+    width: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* COLAPSADO: solo íconos */
+  .sidebar.collapsed .nav-btn {
+    justify-content: center;
+    padding: 12px;
+    background-color: #4a4e54;
+    overflow: hidden;
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  
+  .sidebar.collapsed .nav-btn i {
+    font-size: 22px;
+    color: white;
+    margin: 0;
+  }
+  
+  .sidebar.collapsed .nav-btn span {
+    display: none;
+  }
+  
+  /* Añadir tooltip al pasar el mouse sobre los iconos cuando está colapsado */
+  .sidebar.collapsed .nav-btn:hover::after {
+    content: attr(title);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #343a40;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+    white-space: nowrap;
+    z-index: 1000;
+  }
+  
+  /* ========== BOTÓN DE CERRAR SESIÓN ========== */
+  .logout {
+    margin-top: auto;
+    padding-bottom: 10px;
+  }
+  
+  .logout a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    background-color: #dc3545;
+  }
+  
+  .logout a:hover {
+    background-color: #c82333;
+  }
+  
+  .sidebar.collapsed .logout a {
+    width: 40px;
+    margin: auto;
+    padding: 12px;
+  }
+  
+  .sidebar.collapsed .logout a span {
+    display: none;
+  }
+  
+  .sidebar.collapsed .logout a i {
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  /* Añadir tooltip al botón de logout cuando está colapsado */
+  .sidebar.collapsed .logout a:hover::after {
+    content: attr(title);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #343a40;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+    white-space: nowrap;
+    z-index: 1000;
+  }
+  
+  /* ========== CONTENIDO PRINCIPAL ========== */
+  .main-content {
+    margin-left: 220px;
+    padding: 30px;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    width: calc(100% - 220px);
+    overflow-y: auto;
+    height: 100vh;
+  }
+  
+  .main-content.expanded {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+  }
+  
+  /* ========== TABLA Y PAGINACIÓN ========== */
+  .pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+  }
+  
+  .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination li a {
+    display: block;
+    padding: 5px 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 3px;
+    color: #0d6efd;
+    text-decoration: none;
+  }
+  
+  .pagination li.active a {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+  }
+  
+  .pagination li a:hover {
+    background-color: #e9ecef;
+  }
+  
+  .page-info {
+    color: #6c757d;
+  }
+  
+  /* ========== RESPONSIVO ========== */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 60px;
+    }
+  
+    .main-content {
+      margin-left: 60px;
+      width: calc(100% - 60px);
+    }
+  
+    .nav-btn span {
+      display: none;
+    }
+  
+    .nav-btn {
+      justify-content: center;
+      font-size: 0;
+      padding: 12px;
+    }
+  
+    .sidebar-header .brand {
+      display: none;
+    }
+  
+    .nav-btn .nav-logo {
+      display: block;
+    }
+  }
+  
+  /* Estilos para el selector de registros por página */
+  .records-per-page {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Corregir la posición de la flecha en el selector */
+  .records-per-page select {
+    padding: 5px 25px 5px 10px; /* Aumentar el padding derecho para la flecha */
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    appearance: none; /* Eliminar la apariencia nativa */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 5px center; /* Posicionar la flecha a la derecha */
+    background-size: 16px 12px;
+    text-align: center; /* Centrar el texto */
+    min-width: 70px; /* Ancho mínimo para que quepa bien el número */
+  }
+  
+  /* Animación para el botón de hamburguesa */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .sidebar.collapsed .toggle-btn:hover {
+    animation: pulse 1s infinite;
+  }
+  
+  /* Mejora visual para la tabla */
+  .table-container {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  #tablainicio {
+    margin-bottom: 0;
+  }
+  
+  #tablainicio thead th {
+    position: sticky;
+    top: 0;
+    background-color: #343a40;
+    color: white;
+  }
+  
+  /* Estilo para filas al pasar el mouse */
+  #tablainicio tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+    cursor: pointer;
+  }
