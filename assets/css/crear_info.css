@@ -1,0 +1,133 @@
+/* Estilos de las tablas tipo Excel */
+.excel-tabs {
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Permitir que las pestañas se envuelvan en pantallas pequeñas */
+}
+
+.excel-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    margin-right: 2px;
+    color: #495057;
+    background-color: #f8f9fa;
+}
+
+.excel-tabs .nav-link.active {
+    color: #495057;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.excel-tabs .nav-link:hover {
+    border-color: #e9ecef #e9ecef #dee2e6;
+}
+
+.excel-tabs .nav-link i {
+    margin-right: 5px;
+}
+
+.table-container {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Permitir scroll horizontal en la tabla si es necesario */
+    width: 100%; /* Asegurar que ocupe todo el ancho disponible */
+    max-width: 100%; /* Evitar que se desborde */
+}
+
+.table-excel {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+    min-width: 500px; /* Ancho mínimo para evitar que se comprima demasiado */
+}
+
+.table-excel th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    padding: 10px 15px;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.table-excel td {
+    padding: 8px 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.table-excel tbody tr:hover {
+    background-color: #f1f3f5;
+    cursor: pointer;
+}
+
+.table-excel tbody tr.selected {
+    background-color: #e2f0ff;
+}
+
+/* Estilos para modales */
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Estilos para los controles de acción y búsqueda */
+.d-flex.justify-content-between.align-items-center {
+    gap: 15px; /* Espacio entre los grupos de botones y búsqueda */
+}
+
+.d-flex.justify-content-between.align-items-center .btn-sm {
+    margin-right: 5px; /* Espacio entre botones */
+}
+
+/* Mejorar la responsividad de los controles */
+@media (max-width: 992px) {
+    .d-flex.justify-content-between.align-items-center {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .d-flex.justify-content-between.align-items-center > div {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    .d-flex.align-items-center {
+        width: 100%;
+    }
+    
+    #buscarMarca, #buscarFamilia, #buscarUbicacion {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .excel-tabs .nav-link {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    .excel-tabs .nav-link i {
+        margin-right: 3px;
+    }
+    
+    .table-excel th, .table-excel td {
+        padding: 8px 10px;
+    }
+    
+    /* Asegurar que los botones de acción no se desborden */
+    .btn-sm {
+        padding: 0.25rem 0.4rem;
+        font-size: 0.75rem;
+    }
+}
